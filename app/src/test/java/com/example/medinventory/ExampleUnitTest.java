@@ -1,4 +1,4 @@
-package com.example.studentrecord;
+package com.example.medinventory;
 
 import org.junit.Test;
 

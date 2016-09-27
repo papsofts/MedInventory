@@ -1,9 +1,9 @@
 <resources>
-    <string name="app_name">Student Record</string>
+    <string name="app_name">Products Record</string>
     <string name="action_settings">Settings</string>
-    <string name="create_student">Create Student</string>
-    <string name="student_firstname">Student Firstname</string>
-    <string name="student_email">Student Email</string>
+    <string name="create_student">Create Product</string>
+    <string name="product_name">Product Name</string>
+    <string name="product_type">Product Type</string>
     <string name="_0_records_found">0 records found</string>
-    <string name="students_list">Students List</string>
+    <string name="product_list">Product List</string>
 </resources>

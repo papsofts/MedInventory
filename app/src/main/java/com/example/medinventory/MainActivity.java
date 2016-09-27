@@ -1,17 +1,16 @@
-package com.example.studentrecord;
+package com.example.medinventory;
 
 import android.content.Context;
 import android.content.DialogInterface;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.LayoutInflater;
-import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -34,29 +33,29 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View view) {
                 final Context context = view.getContext();
                 LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-                final View formElementsView = inflater.inflate(R.layout.student_input_form, null, false);
+                final View formElementsView = inflater.inflate(R.layout.product_input_form, null, false);
 
-                final EditText editTextStudentFirstname = (EditText) formElementsView.findViewById(R.id.editTextStudentFirstname);
-                final EditText editTextStudentEmail = (EditText) formElementsView.findViewById(R.id.editTextStudentEmail);
+                final EditText editTextProductName = (EditText) formElementsView.findViewById(R.id.editTextProductName);
+                final EditText editTextProductType = (EditText) formElementsView.findViewById(R.id.editTextProductType);
 
                 new AlertDialog.Builder(context)
                         .setView(formElementsView)
-                        .setTitle("Create Student")
+                        .setTitle("Create Product")
                         .setPositiveButton("Add",
                                 new DialogInterface.OnClickListener() {
                                     public void onClick(DialogInterface dialog, int id) {
-                                        String studentFirstname = editTextStudentFirstname.getText().toString();
-                                        String studentEmail = editTextStudentEmail.getText().toString();
+                                        String productName = editTextProductName.getText().toString();
+                                        String productType = editTextProductType.getText().toString();
 
-                                        ObjectStudent objectStudent = new ObjectStudent();
-                                        objectStudent.firstname= studentFirstname;
-                                        objectStudent.email= studentEmail;
+                                        ObjectProduct ObjectProduct = new ObjectProduct();
+                                        ObjectProduct.productName= productName;
+                                        ObjectProduct.productType= productType;
 
-                                        boolean createSuccessful = new TableControllerStudent(context).create(objectStudent);
+                                        boolean createSuccessful = new TableControllerProduct(context).create(ObjectProduct);
                                         if(createSuccessful){
-                                            Toast.makeText(context, "Student information was saved.", Toast.LENGTH_SHORT).show();
+                                            Toast.makeText(context, "Product information was saved.", Toast.LENGTH_SHORT).show();
                                         }else{
-                                            Toast.makeText(context, "Unable to save student information.", Toast.LENGTH_SHORT).show();
+                                            Toast.makeText(context, "Unable to save product information.", Toast.LENGTH_SHORT).show();
                                         }
                                         countRecords();
                                         ((MainActivity) context).readRecords();
@@ -93,7 +92,7 @@ public class MainActivity extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
     public void countRecords() {
-        int recordCount = new TableControllerStudent(this).count();
+        int recordCount = new TableControllerProduct(this).count();
         TextView textViewRecordCount = (TextView) findViewById(R.id.textViewRecordCount);
         textViewRecordCount.setText(recordCount + " records found.");
     }
@@ -103,25 +102,25 @@ public class MainActivity extends AppCompatActivity {
         LinearLayout linearLayoutRecords = (LinearLayout) findViewById(R.id.linearLayoutRecords);
         linearLayoutRecords.removeAllViews();
 
-        List<ObjectStudent> students = new TableControllerStudent(this).read();
+        List<ObjectProduct> products = new TableControllerProduct(this).read();
 
-        if (students.size() > 0) {
+        if (products.size() > 0) {
 
-            for (ObjectStudent obj : students) {
+            for (ObjectProduct obj : products) {
 
                 int id = obj.id;
-                String studentFirstname = obj.firstname;
-                String studentEmail = obj.email;
+                String productName = obj.productName;
+                String productType = obj.productType;
 
-                String textViewContents = studentFirstname + " - " + studentEmail;
+                String textViewContents = productName + " - " + productType;
 
-                TextView textViewStudentItem= new TextView(this);
-                textViewStudentItem.setPadding(20, 10, 20, 10);
-                textViewStudentItem.setText(textViewContents);
-                textViewStudentItem.setTag(Integer.toString(id));
-                textViewStudentItem.setOnLongClickListener(new OnLongClickListenerStudentRecord());
+                TextView textViewProductItem= new TextView(this);
+                textViewProductItem.setPadding(20, 10, 20, 10);
+                textViewProductItem.setText(textViewContents);
+                textViewProductItem.setTag(Integer.toString(id));
+                textViewProductItem.setOnLongClickListener(new OnLongClickListenerProdcutRecord());
 
-                linearLayoutRecords.addView(textViewStudentItem);
+                linearLayoutRecords.addView(textViewProductItem);
             }
 
         }

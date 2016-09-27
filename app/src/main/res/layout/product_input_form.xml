@@ -4,24 +4,24 @@
     android:layout_height="match_parent" >
 
     <EditText
-        android:id="@+id/editTextStudentFirstname"
+        android:id="@+id/editTextProductName"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentLeft="true"
         android:layout_alignParentTop="true"
-        android:hint="@string/student_firstname"
+        android:hint="@string/product_name"
         android:singleLine="true" >
 
         <requestFocus />
     </EditText>
 
     <EditText
-        android:id="@+id/editTextStudentEmail"
+        android:id="@+id/editTextProductType"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentLeft="true"
-        android:layout_below="@+id/editTextStudentFirstname"
-        android:hint="@string/student_email"
+        android:layout_below="@+id/editTextProductName"
+        android:hint="@string/product_type"
         android:singleLine="true" />
 
 </RelativeLayout>
