@@ -121,7 +121,7 @@ public class TableControllerPurchased extends DatabaseHandler {
     public ObjectPurchased readSingleRecord(int productId) {
 
         ObjectPurchased objectPurchased = null;
-        String sql = "SELECT * FROM purchase WHERE id = " + productId;
+        String sql = "SELECT * FROM purchase WHERE productId = " + productId;
 
         SQLiteDatabase db = this.getWritableDatabase();
 
@@ -152,6 +152,28 @@ public class TableControllerPurchased extends DatabaseHandler {
         db.close();
 
         return objectPurchased;
+
+    }
+
+
+    public int readProductCount(int productId){
+
+        String sql = "SELECT quantity AS Total FROM purchase WHERE productId = " + productId;
+        int Total=0;
+        SQLiteDatabase db = this.getWritableDatabase();
+
+        Cursor cursor = db.rawQuery(sql, null);
+
+        if (cursor.moveToFirst()) {
+            do{
+            Total += Integer.parseInt(cursor.getString(cursor.getColumnIndex("Total")));
+            } while (cursor.moveToNext());
+        }
+
+        cursor.close();
+        db.close();
+        readSingleRecord(productId);
+        return Total;
 
     }
 }

@@ -36,7 +36,6 @@ public class TableControllerProduct extends DatabaseHandler {
         String sql = "SELECT * FROM products";
         int recordCount = db.rawQuery(sql, null).getCount();
         db.close();
-
         return recordCount;
 
     }
@@ -130,4 +129,6 @@ public class TableControllerProduct extends DatabaseHandler {
         return objectProduct;
 
     }
+
+
 }

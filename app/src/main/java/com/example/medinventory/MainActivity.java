@@ -24,6 +24,12 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        /*
+        boolean updateCounts = this.updateStock();
+
+        if (updateCounts==false){
+            return;
+        }*/
         super.onCreate(savedInstanceState);
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
@@ -108,6 +114,8 @@ public class MainActivity extends AppCompatActivity {
         linearLayoutRecords.removeAllViews();
 
         List<ObjectProduct> products = new TableControllerProduct(this).read();
+        TableControllerPurchased purchase=new TableControllerPurchased(this);
+        TableControllerDispensed dispense=new TableControllerDispensed(this);
         //Add header
         /*String textViewContents= "Product Type" + " - " + "Product Name";
         TextView textViewProductItem= new TextView(this);
@@ -123,8 +131,9 @@ public class MainActivity extends AppCompatActivity {
                 int id = obj.id;
                 String productName = obj.productName;
                 String productType = obj.productType;
+                int stock=purchase.readProductCount(id)-dispense.readProductCount(id);
 
-                String textViewContents = productType + " - " + productName;
+                String textViewContents = productType + " - " + productName + " - " + stock;
 
                 TextView textViewProductItem= new TextView(this);
                 textViewProductItem.setPadding(20, 10, 20, 10);
@@ -146,5 +155,44 @@ public class MainActivity extends AppCompatActivity {
             linearLayoutRecords.addView(locationItem);
         }
 
+    }
+
+    public boolean updateStock() {
+        List<ObjectProduct> products=new TableControllerProduct(this).read();
+        TableControllerPurchased purchase=new TableControllerPurchased(this);
+        TableControllerDispensed dispense=new TableControllerDispensed(this);
+        if (products.size() > 0) {
+
+            for (ObjectProduct obj : products) {
+
+                int id = obj.id;
+                String productName = obj.productName;
+                String productType = obj.productType;
+                int stock=purchase.readProductCount(id)-dispense.readProductCount(id);
+
+                String textViewContents = productType + " - " + productName + " - " + stock;
+
+            }
+
+        }
+        return true;
+    }
+
+    public String displayStock(Context context,int productId) {
+        ObjectProduct product=new TableControllerProduct(context).readSingleRecord(productId);
+        TableControllerPurchased purchase=new TableControllerPurchased(context);
+        TableControllerDispensed dispense=new TableControllerDispensed(context);
+        String textViewContents=null;
+        if (product!=null) {
+
+                int id = product.id;
+                String productName = product.productName;
+                String productType = product.productType;
+                int stock=purchase.readProductCount(id)-dispense.readProductCount(id);
+
+                textViewContents = productType + " - " + productName + " - " + stock;
+
+        }
+        return textViewContents;
     }
 }

@@ -8,4 +8,8 @@
     <string name="product_list">Product List</string>
     <string name="medicine_inventory">Medicine Inventory</string>
     <string name="medicine_inventory_header">Medicine Inventory</string>
+    <string name="quantity">Quantity</string>
+    <string name="price">Price</string>
+    <string name="dealer">Dealer</string>
+    <string name="patient_name">Patient Name</string>
 </resources>

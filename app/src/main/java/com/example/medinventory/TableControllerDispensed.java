@@ -5,7 +5,9 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 public class TableControllerDispensed extends DatabaseHandler {
@@ -152,6 +154,26 @@ public class TableControllerDispensed extends DatabaseHandler {
         db.close();
 
         return objectDispensed;
+
+    }
+
+    public int readProductCount(int productId){
+
+        String sql = "SELECT sum(quantity) AS Total FROM dispense WHERE id = " + productId;
+        int Total=0;
+        SQLiteDatabase db = this.getWritableDatabase();
+
+        Cursor cursor = db.rawQuery(sql, null);
+
+        if (cursor.moveToFirst()) {
+            String Tot=cursor.getString(cursor.getColumnIndex("Total"));
+            if (Tot!=null) Total = Integer.parseInt(Tot);
+        }
+
+        cursor.close();
+        db.close();
+
+        return Total;
 
     }
 }
