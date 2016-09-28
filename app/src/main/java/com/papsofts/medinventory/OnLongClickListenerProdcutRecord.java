@@ -1,4 +1,4 @@
-package com.example.medinventory;
+package com.papsofts.medinventory;
 
 import android.annotation.SuppressLint;
 import android.app.AlertDialog;
@@ -22,9 +22,9 @@ class OnLongClickListenerProdcutRecord implements View.OnLongClickListener {
         context = view.getContext();
         id = view.getTag().toString();
 
-        final CharSequence[] items = { "Sell","Purchase","Edit", "Delete" };
+        final CharSequence[] items = { "Dispense","Purchase","Edit", "Delete","Purchase List","Dispense List" };
 
-        new AlertDialog.Builder(context).setTitle("Product Record")
+        new AlertDialog.Builder(context).setTitle("Options")
                 .setItems(items, new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int item) {
                         if (item == 0) {
@@ -50,6 +50,10 @@ class OnLongClickListenerProdcutRecord implements View.OnLongClickListener {
                             ((MainActivity) context).countRecords();
                             ((MainActivity) context).readRecords();
 
+                        }else if (item == 4) {
+                            //Purchase List to be displayed
+                        }else if (item == 5) {
+                            //Dispense List to be displayed
                         }
                         dialog.dismiss();
 

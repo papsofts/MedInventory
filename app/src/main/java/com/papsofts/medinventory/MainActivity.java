@@ -1,4 +1,4 @@
-package com.example.medinventory;
+package com.papsofts.medinventory;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
@@ -10,7 +10,6 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.LayoutInflater;
 import android.view.Menu;
-import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.EditText;
@@ -49,7 +48,7 @@ public class MainActivity extends AppCompatActivity {
 
                 new AlertDialog.Builder(context)
                         .setView(formElementsView)
-                        .setTitle("Create Product")
+                        .setTitle("Create Medicine")
                         .setPositiveButton("Add",
                                 new DialogInterface.OnClickListener() {
                                     public void onClick(DialogInterface dialog, int id) {
@@ -62,9 +61,9 @@ public class MainActivity extends AppCompatActivity {
 
                                         boolean createSuccessful = new TableControllerProduct(context).create(ObjectProduct);
                                         if(createSuccessful){
-                                            Toast.makeText(context, "Product information was saved.", Toast.LENGTH_SHORT).show();
+                                            Toast.makeText(context, productType+" - "+productName+" added.", Toast.LENGTH_SHORT).show();
                                         }else{
-                                            Toast.makeText(context, "Unable to save product information.", Toast.LENGTH_SHORT).show();
+                                            Toast.makeText(context, "Unable to add "+productType+" - "+productName, Toast.LENGTH_SHORT).show();
                                         }
                                         countRecords();
                                         ((MainActivity) context).readRecords();

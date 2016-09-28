@@ -1,4 +1,4 @@
-package com.example.medinventory;
+package com.papsofts.medinventory;
 
 import android.content.Context;
 import android.support.test.InstrumentationRegistry;
@@ -21,6 +21,6 @@ public class ExampleInstrumentedTest {
         // Context of the app under test.
         Context appContext = InstrumentationRegistry.getTargetContext();
 
-        assertEquals("com.example.medinventory", appContext.getPackageName());
+        assertEquals("com.papsofts.medinventory", appContext.getPackageName());
     }
 }

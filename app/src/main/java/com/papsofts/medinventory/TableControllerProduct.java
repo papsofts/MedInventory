@@ -1,4 +1,4 @@
-package com.example.medinventory;
+package com.papsofts.medinventory;
 
 import android.content.ContentValues;
 import android.content.Context;
