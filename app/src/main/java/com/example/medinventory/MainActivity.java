@@ -1,5 +1,6 @@
 package com.example.medinventory;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.os.Bundle;
@@ -9,6 +10,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.LayoutInflater;
 import android.view.Menu;
+import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.EditText;
@@ -23,9 +25,10 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+        setContentView(R.layout.activity_main);
 
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
@@ -91,19 +94,28 @@ public class MainActivity extends AppCompatActivity {
 
         return super.onOptionsItemSelected(item);
     }
+    @SuppressLint("SetTextI18n")
     public void countRecords() {
         int recordCount = new TableControllerProduct(this).count();
         TextView textViewRecordCount = (TextView) findViewById(R.id.textViewRecordCount);
         textViewRecordCount.setText(recordCount + " records found.");
     }
 
+    @SuppressLint("SetTextI18n")
     public void readRecords() {
 
         LinearLayout linearLayoutRecords = (LinearLayout) findViewById(R.id.linearLayoutRecords);
         linearLayoutRecords.removeAllViews();
 
         List<ObjectProduct> products = new TableControllerProduct(this).read();
-
+        //Add header
+        /*String textViewContents= "Product Type" + " - " + "Product Name";
+        TextView textViewProductItem= new TextView(this);
+        textViewProductItem.setPadding(20, 10, 20, 10);
+        textViewProductItem.setText(textViewContents);
+        textViewProductItem.setTag(Integer.toString(0));
+        linearLayoutRecords.addView(textViewProductItem);*/
+        //Header end
         if (products.size() > 0) {
 
             for (ObjectProduct obj : products) {
@@ -112,7 +124,7 @@ public class MainActivity extends AppCompatActivity {
                 String productName = obj.productName;
                 String productType = obj.productType;
 
-                String textViewContents = productName + " - " + productType;
+                String textViewContents = productType + " - " + productName;
 
                 TextView textViewProductItem= new TextView(this);
                 textViewProductItem.setPadding(20, 10, 20, 10);

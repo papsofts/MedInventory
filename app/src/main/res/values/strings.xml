@@ -1,9 +1,11 @@
 <resources>
     <string name="app_name">Products Record</string>
-    <string name="action_settings">Settings</string>
+    <string name="action_settings">Transact</string>
     <string name="create_student">Create Product</string>
     <string name="product_name">Product Name</string>
     <string name="product_type">Product Type</string>
     <string name="_0_records_found">0 records found</string>
     <string name="product_list">Product List</string>
+    <string name="medicine_inventory">Medicine Inventory</string>
+    <string name="medicine_inventory_header">Medicine Inventory</string>
 </resources>

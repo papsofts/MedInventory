@@ -1,12 +1,13 @@
 package com.example.medinventory;
 
-public class ObjectProduct {
+class ObjectProduct {
 
     int id;
     String productName;
     String productType;
+    String currentStock;
 
-    public ObjectProduct(){
+    ObjectProduct(){
 
     }
 }
