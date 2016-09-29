@@ -121,7 +121,7 @@ public class TableControllerDispensed extends DatabaseHandler {
     public ObjectDispensed readSingleRecord(int productId) {
 
         ObjectDispensed objectDispensed = null;
-        String sql = "SELECT * FROM dispense WHERE id = " + productId;
+        String sql = "SELECT * FROM dispense WHERE productId = " + productId;
 
         SQLiteDatabase db = this.getWritableDatabase();
 
@@ -157,7 +157,7 @@ public class TableControllerDispensed extends DatabaseHandler {
 
     public int readProductCount(int productId){
 
-        String sql = "SELECT sum(quantity) AS Total FROM dispense WHERE id = " + productId;
+        String sql = "SELECT sum(quantity) AS Total FROM dispense WHERE productId = " + productId;
         int Total=0;
         SQLiteDatabase db = this.getWritableDatabase();
 

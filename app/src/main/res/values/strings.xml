@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Products Record</string>
+    <string name="app_name">Med Inventory</string>
     <string name="action_settings">Transact</string>
     <string name="create_student">Add Medicine</string>
     <string name="product_name">Medicine Name</string>
